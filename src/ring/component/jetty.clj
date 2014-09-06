@@ -16,6 +16,10 @@
           (dissoc component :server))
       component)))
 
-(defn jetty-server [{:keys [handler port] :as options}]
+(defn jetty-server
+  "Create a Jetty server component from a map of options. Expects the :handler
+  and :port options to be set at a minimum. All other options are passed to the
+  Ring Jetty adapter, except for :join?, which is always false."
+  [{:keys [handler port] :as options}]
   {:pre [(ifn? handler) (integer? port)]}
   (map->JettyServer options))
