@@ -1,6 +1,6 @@
 (defproject ring-jetty-component "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "A component for the standard Ring Jetty adapter"
+  :url "https://github.com/weavejester/ring-jetty-component"
   :license {:name "The MIT License"
             :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.5.1"]
