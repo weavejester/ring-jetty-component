@@ -7,10 +7,13 @@
 
 (deftest test-jetty-server
   (let [response {:status 200 :headers {} :body "test"}
-        handler  (constantly response)
-        server   (jetty-server {:handler handler, :port 3400})]
+        handler  (constantly response)]
+    (testing "preconditions"
+      (is (thrown? AssertionError (jetty-server {})))
+      (is (thrown? AssertionError (jetty-server {:handler handler})))
+      (is (thrown? AssertionError (jetty-server {:port 3400}))))
     (testing "server starts"
-      (let [server (component/start server)]
+      (let [server (component/start (jetty-server {:handler handler, :port 3400}))]
         (try
           (Thread/sleep 100)
           (let [response (http/get "http://127.0.0.1:3400/")]
