@@ -16,6 +16,6 @@
           (dissoc component :server))
       component)))
 
-(defn jetty-server [options]
-  {:pre (ifn? (:handler options))}
+(defn jetty-server [{:keys [handler port] :as options}]
+  {:pre [(ifn? handler) (integer? port)]}
   (map->JettyServer options))
