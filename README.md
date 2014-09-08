@@ -30,14 +30,19 @@ Then create a server component:
    :headers {"Content-Type" "text/plain"}
    :body    "Hello World"})
 
+(def app
+  {:handler handler})
+
 (def http-server
-  (jetty-server {:handler handler, :port 3000}))
+  (jetty-server {:app app, :port 3000}))
 ```
 
-The `:handler` and `:port` options are mandatory. All other options
-are passed back to the Ring Jetty adapter, except for `:join?`, which
-is always false. This guarantees the component doesn't block the
-running thread.
+The `:app` option can either be a bare map, or another component
+record. It must contain the key `:handler`.
+
+All other options are passed to the ring to the Ring Jetty adapter,
+except for `:join?`, which is always false. This guarantees the
+component doesn't block the running thread.
 
 This server can be started using `component/start`:
 
