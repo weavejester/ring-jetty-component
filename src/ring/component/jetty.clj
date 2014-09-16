@@ -13,6 +13,7 @@
   (stop [component]
     (if-let [^Server server (:server component)]
       (do (.stop server)
+          (.join server)
           (dissoc component :server))
       component)))
 
