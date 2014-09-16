@@ -12,12 +12,10 @@
     (testing "server starts"
       (let [server (component/start server)]
         (try
-          (Thread/sleep 100)
           (let [response (http/get "http://127.0.0.1:3400/")]
             (is (= (:status response) 200))
             (is (= (:body response) "test")))
           (finally
             (component/stop server)))))
     (testing "server stops"
-      (Thread/sleep 100)
       (is (thrown? ConnectException (http/get "http://127.0.0.1:3400/"))))))
