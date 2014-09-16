@@ -8,8 +8,9 @@
   (start [component]
     (if (:server component)
       component
-      (let [options (-> component (dissoc :app) (assoc :join? false))]
-        (assoc component :server (jetty/run-jetty (:handler app) options)))))
+      (let [options (-> component (dissoc :app) (assoc :join? false))
+            server  (jetty/run-jetty (:handler app) options)]
+        (assoc component :server server))))
   (stop [component]
     (if-let [^Server server (:server component)]
       (do (.stop server)
