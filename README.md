@@ -11,7 +11,7 @@ applications that use Stuart Sierra's [reloaded workflow][3].
 
 Add the following dependency to your `project.clj`:
 
-    [ring-jetty-component "0.2.2"]
+    [ring-jetty-component "0.2.3"]
 
 ## Usage
 
