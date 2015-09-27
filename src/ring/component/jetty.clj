@@ -36,7 +36,8 @@
         (-> component
             (assoc :server (:server old-component), :handler handler)
             (dissoc :suspended?)))
-      (component/start component))))
+      (do (when old-component (component/stop old-component))
+          (component/start component)))))
 
 (defn jetty-server
   "Create a Jetty server component from a map of options. The component expects

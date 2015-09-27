@@ -38,6 +38,17 @@
           (finally
             (component/stop server1)
             (component/stop server2)))))
+    (testing "suspend and resume with different config"
+      (let [server1  (-> server1 component/start suspendable/suspend)
+            server2  (suspendable/resume (assoc server2 :port 3401) server1)]
+        (try
+          (is (.isStopped (:server server1)))
+          (let [response (http/get "http://127.0.0.1:3401/")]
+            (is (= (:status response) 200))
+            (is (= (:body response) "bar")))
+          (finally
+            (component/stop server1)
+            (component/stop server2)))))
     (testing "resume from stopped"
       (let [server2 (suspendable/resume server2 server1)]
         (try
