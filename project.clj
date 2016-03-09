@@ -1,4 +1,4 @@
-(defproject ring-jetty-component "0.3.0"
+(defproject ring-jetty-component "0.3.1"
   :description "A component for the standard Ring Jetty adapter"
   :url "https://github.com/weavejester/ring-jetty-component"
   :license {:name "The MIT License"
