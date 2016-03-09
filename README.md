@@ -62,6 +62,6 @@ Sierra's [Component library][1].
 
 ## License
 
-Copyright © 2015 James Reeves
+Copyright © 2016 James Reeves
 
 Distributed under the MIT License, the same as Ring.
